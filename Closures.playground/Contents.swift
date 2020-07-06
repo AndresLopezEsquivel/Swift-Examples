@@ -1,3 +1,8 @@
+/*
+ Author: Andrés López Esquivel
+ Topic: Closures
+ */
+
 //EXAMPLE ONE
 print("EXAMPLE ONE")
 
