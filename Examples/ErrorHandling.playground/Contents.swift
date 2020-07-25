@@ -21,6 +21,7 @@ enum ErrorGroup : Error
     case errorConditionOne
     case errorConditionTwo
     case errorConditionThree
+    case errorConditionFour
 }
 
 print("== Representing and Throwing Errors ==")
@@ -34,8 +35,58 @@ print("== Representing and Throwing Errors ==")
  When an error is thrown, there must be a way of handling it.
  In Swift, there are four ways to handle errors:
  
- 1) Propagating Erros Using Throwing Functions
+ 1) Propagating Errors Using Throwing Functions
  2) Using Do-Catch statement
  3) Converting Errors to Optional Values
  4) Disabling Error Propagation
  */
+
+print("== Handling Erros ==")
+
+//MARK:- Propagating Errors Using Throwing Functions
+
+/*
+ A function is recognized as a Throwing Function if it has the
+ throws keyword after its parameters and before its return type.
+ 
+ For example.
+ 
+ func funcOne() throws -> Int
+ 
+ A Throwing Function propagates errors that happen inside of it.
+ It is important to mention that Throwing Functions are the
+ only ones that can propagate errors, otherwise, with
+ a nonthrowing function, the errors need to be handled inside the
+ function.
+ */
+
+class ProofClass
+{
+    func proofMethod(a : Int?, b : Int?) throws -> Int
+    {
+        guard let num1 = a else
+        {
+            throw ErrorGroup.errorConditionOne
+        }
+        
+        guard let num2 = b else
+        {
+            throw ErrorGroup.errorConditionTwo
+        }
+        
+        guard num1 >= 0 && num2 >= 0 else
+        {
+            throw ErrorGroup.errorConditionThree
+        }
+        
+        return num1 + num2
+    }
+}
+
+let proofClass = ProofClass()
+//Uncomment the following line of code if you want to execute it.
+//let result1 = try proofClass.proofMethod(a: nil, b: nil)
+let result2 = try proofClass.proofMethod(a: 1, b: 2)
+
+print("* Propagating Errors Using Throwing Functions *")
+print("result2 = \(result2)")
