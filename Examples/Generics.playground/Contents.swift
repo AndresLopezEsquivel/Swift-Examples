@@ -1,4 +1,5 @@
 //GENERICS
+//Author: Andrés López Esquivel
 
 /*
  Generics let us to write reusable functions and types

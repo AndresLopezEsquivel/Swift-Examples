@@ -1,4 +1,5 @@
 //TYPE CASTING
+//Author: Andrés López Esquivel
 
 //MARK:-Defining a Class Hierarchy for Type Casting
 

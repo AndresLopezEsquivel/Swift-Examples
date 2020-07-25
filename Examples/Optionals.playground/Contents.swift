@@ -1,3 +1,6 @@
+//OPTIONALS
+//Author: Andrés López Esquivel
+
 //==== FORCE UNWRAPPING ====
 
 //Declare the box

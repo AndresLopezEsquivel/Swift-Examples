@@ -1,4 +1,5 @@
 //ENUMERATIONS
+//Author: Andrés López Esquivel
 
 //MARK: - Enumeration Syntax
 

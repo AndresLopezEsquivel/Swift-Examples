@@ -1,4 +1,5 @@
-//Delegation Design Pattern
+//DELEGATION DESIGN PATTERN
+//Author: Andrés López Esquivel
 
 /*
  A class delegates one o more of its reponsabilities to

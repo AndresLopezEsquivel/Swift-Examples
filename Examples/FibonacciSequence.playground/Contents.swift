@@ -1,3 +1,6 @@
+//FIBONACCI SEQUENCE
+//Author: Andrés López Esquivel
+
 func fibonacci(n : Int)
 {
     var sequence = [0,1]

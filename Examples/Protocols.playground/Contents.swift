@@ -1,3 +1,6 @@
+//PROTOCOLS
+//Author: Andrés López Esquivel
+
 //Structs and classes can adopt (implement) protocol
 //With protocols you have to implement the requirements stablished by the protocol
 
