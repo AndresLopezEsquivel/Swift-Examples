@@ -18,10 +18,10 @@
 
 enum ErrorGroup : Error
 {
-    case errorConditionOne
-    case errorConditionTwo
-    case errorConditionThree
-    case errorConditionFour
+    case NumberOneIsMissing
+    case NumberTwoIsMissing
+    case NumbersAreNotPositiveValues
+    case IsNotInteger
 }
 
 print("== Representing and Throwing Errors ==")
@@ -66,17 +66,17 @@ class ProofClass
     {
         guard let num1 = a else
         {
-            throw ErrorGroup.errorConditionOne
+            throw ErrorGroup.NumberOneIsMissing
         }
         
         guard let num2 = b else
         {
-            throw ErrorGroup.errorConditionTwo
+            throw ErrorGroup.NumberTwoIsMissing
         }
         
         guard num1 >= 0 && num2 >= 0 else
         {
-            throw ErrorGroup.errorConditionThree
+            throw ErrorGroup.NumbersAreNotPositiveValues
         }
         
         return num1 + num2
@@ -90,3 +90,79 @@ let result2 = try proofClass.proofMethod(a: 1, b: 2)
 
 print("* Propagating Errors Using Throwing Functions *")
 print("result2 = \(result2)")
+
+// MARK: - Handling Errors Using Do-Catch Statements
+
+//Do-Catch Statements are used to handle errors occurred in a block of code.
+
+print("* Handling Errors Using Do-Catch Statements *")
+
+//First Example
+do
+{
+    let result = try proofClass.proofMethod(a: 1, b: -2)
+    print("1) Result: \(result)")
+}
+catch ErrorGroup.NumberOneIsMissing
+{
+    print("There's not a first value to execute the operation.")
+}
+catch ErrorGroup.NumberTwoIsMissing
+{
+    print("There's not a second value to execute the operation.")
+}
+catch ErrorGroup.NumbersAreNotPositiveValues
+{
+    print("Either the first value or the second value is not positive")
+}
+catch
+{
+    print("An unexpected error happened")
+    print("Error: \(error)")
+}
+
+//Second Example
+do
+{
+    let result = try proofClass.proofMethod(a: nil, b: nil)
+    print("2) Result: \(result)")
+}
+catch is ErrorGroup
+{
+    print("An error from ErrorGroup happened")
+}
+catch
+{
+    print("An unexpected error happened")
+    print("Error: \(error)")
+}
+
+//Third Example
+
+func f<T>(valueOne a : T, valueTwo b : T) throws -> Int
+{
+    var result : Int = 0
+    
+    if a is Int && b is Int
+    {
+        let numOne = a as! Int
+        let numTwo = b as! Int
+        
+        result = try proofClass.proofMethod(a: numOne, b: numTwo)
+    }
+    else
+    {
+        throw ErrorGroup.NumbersAreNotPositiveValues
+    }
+    
+    return result
+}
+
+do
+{
+    try print("3) ", f(valueOne: 1, valueTwo: 2))
+}
+catch
+{
+    print("Error Ocurred: \(error)")
+}
