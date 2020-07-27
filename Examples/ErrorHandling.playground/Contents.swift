@@ -166,3 +166,71 @@ catch
 {
     print("Error Ocurred: \(error)")
 }
+
+// MARK: - Converting Errors To Optional Values
+
+/*
+ 1) try? converts an error to an optional value in order to handle it.
+ 2) If an error is thrown while evaluating the try? expression,
+    the resulting value is nil.
+ */
+
+enum SubtractionErrors : Error
+{
+    case SecondValueIsGreaterThanFirstValue
+}
+
+func subtraction(valueOne a : Int, valueTwo b : Int) throws -> Int
+{
+    guard a > b else
+    {
+        throw SubtractionErrors.SecondValueIsGreaterThanFirstValue
+    }
+    
+    return a - b
+}
+
+print("* Converting Errors To Optional Values *")
+
+/*
+ Both cases shown below have the same result, however,
+ the first case lets us write concise error handling code.
+ */
+
+//First Case
+
+if let r1 = try? subtraction(valueOne: 1, valueTwo: 2)
+{
+    print("There wasn't any error, r1: \(r1)")
+}
+else
+{
+    print("Error occurred")
+}
+
+//Second Case
+
+let r2 : Int?
+
+do
+{
+    r2 = try subtraction(valueOne: 1, valueTwo: 2)
+    print("There wasn't any error, r1: \(r2!)")
+}
+catch
+{
+    r2 = nil
+    print("Error occurred")
+}
+
+//MARK: - Disabling Error Propagation
+
+/*
+ 1) try! is used to disable error propagation
+ 2) Use it when you know a throwing function won't throw an error
+ */
+
+let r3 = try! subtraction(valueOne: 10, valueTwo: 5)
+
+print("* Disabling Error Propagation *")
+print("r3: \(r3)")
